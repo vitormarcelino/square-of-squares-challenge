@@ -53,20 +53,21 @@ class TerritoryController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
-  }
+  async show ({ params, request, response}) {
+    let territory = await Territory.find(params.id)
+    if(!territory) {
+      response.status(404)
+      return {
+        error: true,
+        message: "territories/not-found"
+      }
+    }
 
-  /**
-   * Update territory details.
-   * PUT or PATCH territories/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
+    return {
+      error: false,
+      data: territory.getJSON()
+    }
   }
 
   /**
@@ -78,6 +79,16 @@ class TerritoryController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+    let territory = await Territory.find(params.id)
+    if(!territory) {
+      response.status(404)
+      return {
+        error: true,
+        message: "territories/not-found"
+      }
+    }
+    territory.delete()
+    return {error: false}
   }
 }
 
