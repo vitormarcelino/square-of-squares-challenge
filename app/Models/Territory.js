@@ -2,6 +2,8 @@
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
+const Square = use("App/Models/Square");
+
 
 class Territory extends Model {
 
@@ -34,7 +36,20 @@ class Territory extends Model {
         }
 
         let territory = await this.create(insetData)
+        await territory.createSquares();
         return territory.getJSON()
+    }
+
+    async createSquares() {
+        for (let x = this.start_x; x <= this.end_x; x++) {
+            for (let y = this.start_y; y <= this.end_y; y++) {
+                // Create a Square
+                let square = await Square.findOrCreate(
+                    {x, y},
+                    {x, y, painted: false}
+                )
+            }
+        }
     }
 
     static get createdAtColumn () {
