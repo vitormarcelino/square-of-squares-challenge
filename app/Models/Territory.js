@@ -5,6 +5,15 @@ const Model = use('Model')
 
 class Territory extends Model {
 
+    static async getAll() {
+        let all = await Territory.all()
+        let territories = await all.rows.map(territory => territory.getJSON())
+        return {
+            count: territories.length,
+            data: territories
+        }
+    }
+
     static async createFromRequest(data) {
         let area = (data.end.x - data.start.x) * (data.end.y - data.start.y)
         let insetData = {
