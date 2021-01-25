@@ -13,6 +13,11 @@
     "adonisjs",
     "adonis-app"
   ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "author": "Vitor Marcelino",
   "license": "UNLICENSED",
   "private": true,
@@ -31,7 +36,10 @@
     "moment": "^2.29.1",
     "mysql": "^2.18.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0"
+  },
   "autoload": {
     "App": "./app"
   }
