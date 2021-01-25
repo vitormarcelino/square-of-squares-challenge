@@ -26,3 +26,4 @@ Route.resource('territories', 'TerritoryController').except(['create', 'edit'])
 
 Route.get('/squares/:x/:y', 'SquareController.showByPosition')
 Route.patch('/squares/:x/:y/paint', 'SquareController.paint')
+Route.get('/dashboard', 'DashboardController.showDashboard')

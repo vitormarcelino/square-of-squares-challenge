@@ -1,0 +1,20 @@
+<h1>Dashboard</h1>
+
+<h2>Most Painted Area</h2>
+
+<ul>
+@each(territory in mostPaitedArea)
+    <li>{{ territory.name }}: {{ territory.painted_area }} painted areas</li>
+@endeach
+</ul>
+
+<h2>Most Proportional Painted Area</h2>
+<ul>
+@each(territory in mostProportionalPaintedArea)
+    <li>{{ territory.name }}: {{ territory.proportionalPaintedArea * 100 }}% painted</li>
+@endeach
+</ul>
+
+<h2>Las 5 Painted Squares</h2>
+
+<h2>Las 5 Errors</h2>
