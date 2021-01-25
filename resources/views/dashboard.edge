@@ -1,0 +1,86 @@
+@layout('master')
+
+@section('content')
+<h1>Dashboard - Square of Squares</h1>
+
+<div class="row">
+    <h2>Most Painted Area</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Territory Name</th>
+                <th class="text-right">Painted Area</th>
+            </tr>
+        </thead>
+        <tbody>
+            @each(territory in mostPaitedArea)
+                <tr>
+                    <td>{{ territory.name }}</td>
+                    <td class="text-right">{{ territory.painted_area }}</td>
+                </tr>
+            @endeach
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <h2>Most Proportional Painted Area</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Territory Name</th>
+                <th class="text-right">Percentage Paited</th>
+            </tr>
+        </thead>
+        <tbody>
+            @each(territory in mostProportionalPaintedArea)
+                <tr>
+                    <td>{{ territory.name }}</td>
+                    <td class="text-right">{{ territory.proportionalPaintedArea * 100 }}%</td>
+                </tr>
+            @endeach
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <h2>Last 5 Painted Squares</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Square Coordinates</th>
+                <th class="text-right">Paited At</th>
+            </tr>
+        </thead>
+        <tbody>
+            @each(square in lastFivePaitedSquares.rows)
+                <tr>
+                    <td>x: {{ square.x }} y: {{ square.y }}</td>
+                    <td class="text-right">{{ square.getPaintedAtFormated() }}</td>
+                </tr>
+            @endeach
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <h2>Last 5 Errors</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Error Message</th>
+                <th class="text-right">At</th>
+            </tr>
+        </thead>
+        <tbody>
+            @each(error in lastFiveErrors.rows)
+                <tr>
+                    <td>{{ error.message }}</td>
+                    <td class="text-right">{{ error.getCreatedAtFormated() }}</td>
+                </tr>
+            @endeach
+        </tbody>
+    </table>
+</div>
+
+@endsection

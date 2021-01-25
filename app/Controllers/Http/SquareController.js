@@ -1,6 +1,7 @@
 'use strict'
 
 const Square = use("App/Models/Square");
+const Error = use("App/Models/Error");
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -22,6 +23,7 @@ class SquareController {
     let square = await Square.query().where('x', params.x).andWhere('y', params.y).fetch()
     // TODO - Middleware to verify if square exists
     if(!square.rows.length) {
+      Error.create({ message: `squares/not-found: x: ${params.x}, y: ${params.y}` })
       return response.status(404).json({
         error: true,
         message: 'squares/not-found'
@@ -45,6 +47,7 @@ class SquareController {
     let square = await Square.query().where('x', params.x).andWhere('y', params.y).fetch()
     // TODO - Middleware to verify if square exists
     if(!square.rows.length) {
+      Error.create({ message: `squares/not-found: x: ${params.x}, y: ${params.y}` })
       return response.status(404).json({
         error: true,
         message: 'squares/not-found'

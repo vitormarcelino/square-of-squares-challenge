@@ -1,6 +1,7 @@
 'use strict'
 
 const Territory = use("App/Models/Territory");
+const Error = use("App/Models/Error");
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -35,6 +36,7 @@ class TerritoryController {
     const data = request.only(['name', 'start', 'end'])
     let territory = await Territory.createFromRequest(data)
     if(!territory) {
+      Error.create({ message: 'territories/territory-overlay: start: ' + JSON.stringify(data.start) + ' end: ' + JSON.stringify(data.end) })
       return response.status(406).json({
         error: true,
         message: "territories/territory-overlay"
@@ -58,6 +60,7 @@ class TerritoryController {
     let territory = await Territory.find(params.id)
     if(!territory) {
       response.status(404)
+      Error.create({ message: `territories/not-found: id: ${params.id}` })
       return {
         error: true,
         message: "territories/not-found"
@@ -84,6 +87,7 @@ class TerritoryController {
     let territory = await Territory.find(params.id)
     if(!territory) {
       response.status(404)
+      Error.create({ message: `territories/not-found: id: ${params.id}` })
       return {
         error: true,
         message: "territories/not-found"

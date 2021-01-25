@@ -17,7 +17,7 @@
 const Route = use('Route')
 
 Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
+  return { greeting: 'square-of-squares-challenge' }
 })
 Route.resource('territories', 'TerritoryController').except(['create', 'edit'])
 .validator(new Map([
@@ -26,3 +26,4 @@ Route.resource('territories', 'TerritoryController').except(['create', 'edit'])
 
 Route.get('/squares/:x/:y', 'SquareController.showByPosition')
 Route.patch('/squares/:x/:y/paint', 'SquareController.paint')
+Route.get('/dashboard', 'DashboardController.showDashboard')
