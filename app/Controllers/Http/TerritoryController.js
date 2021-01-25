@@ -66,7 +66,7 @@ class TerritoryController {
 
     return {
       error: false,
-      data: territory.getJSON()
+      data: await territory.getJSON()
     }
   }
 

@@ -13,7 +13,6 @@ class TerritorySchema extends Schema {
       table.integer('end_x')
       table.integer('end_y')
       table.integer('area')
-      table.integer('painted_area')
     })
   }
 

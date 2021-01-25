@@ -25,7 +25,6 @@ class Territory extends Model {
             end_x: data.end.x,
             end_y: data.end.y,
             area: area,
-            painted_area: 0 // TODO
         }
 
         let all = await this.all()
@@ -44,9 +43,9 @@ class Territory extends Model {
         for (let x = this.start_x; x <= this.end_x; x++) {
             for (let y = this.start_y; y <= this.end_y; y++) {
                 // Create a Square
-                let square = await Square.findOrCreate(
+                await Square.findOrCreate(
                     {x, y},
-                    {x, y, painted: false}
+                    {x, y, territory_id: this.id, painted: false}
                 )
             }
         }
@@ -72,7 +71,7 @@ class Territory extends Model {
                  this.start_y >= element.end_y); 
     }
 
-    getJSON() {
+    async getJSON() {
         return {
             id: this.id,
             name: this.name,
@@ -85,12 +84,22 @@ class Territory extends Model {
                 y: this.end_y
             },
             area: this.getArea(),
-            painted_area: this.painted_area
+            painted_area: await this.getPaintedArea()
         }
     }
 
     getArea() {
         return (this.end_x- this.start_x) * (this.end_y - this.start_y)
+    }
+
+    async getPaintedArea() {
+        let paintedSquares = await this.getPaintedSquares()
+        return paintedSquares.length
+    }
+
+    async getPaintedSquares() {
+        let paintedSquares = await Square.query().where('territory_id', this.id).andWhere('painted', 1).fetch()
+        return paintedSquares.rows
     }
 }
 

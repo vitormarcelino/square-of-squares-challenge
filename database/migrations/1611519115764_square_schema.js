@@ -10,6 +10,7 @@ class SquareSchema extends Schema {
       table.integer('x')
       table.integer('y')
       table.boolean('painted')
+      table.integer('territory_id')
     })
   }
 
