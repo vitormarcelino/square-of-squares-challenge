@@ -34,9 +34,10 @@ curl --request GET \
 ```
 
 ### Territory Show (GET)
+Optional parameter **withpainted** can be set to true
 ```
 curl --request GET \
-  --url http://square-of-squares.vitta.localhost/territories/4
+  --url http://square-of-squares.vitta.localhost/territories/1?withpainted=true
 ```
 
 ### Territory Delete (DELETE)
