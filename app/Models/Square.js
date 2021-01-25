@@ -26,6 +26,12 @@ class Square extends Model {
             this.painted_at = moment().format("YYYY-MM-DD HH:mm:ss")
         }
     }
+
+    getPaintedAtFormated() {
+        if(this.painted_at) {
+            return moment(this.painted_at).format("DD/MM/YYYY HH:mm:ss")
+        }
+    }
 }
 
 module.exports = Square
