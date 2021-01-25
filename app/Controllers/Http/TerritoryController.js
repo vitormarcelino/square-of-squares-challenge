@@ -63,10 +63,12 @@ class TerritoryController {
         message: "territories/not-found"
       }
     }
+    let reqParams = request.get('withpainted')
+    let withpainted = (reqParams.withpainted == 'true') ? true : false
 
     return {
       error: false,
-      data: await territory.getJSON()
+      data: await territory.getJSON(withpainted)
     }
   }
 

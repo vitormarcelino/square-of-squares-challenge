@@ -71,8 +71,8 @@ class Territory extends Model {
                  this.start_y >= element.end_y); 
     }
 
-    async getJSON() {
-        return {
+    async getJSON(withpainted = false) {
+        let json = {
             id: this.id,
             name: this.name,
             start: {
@@ -86,6 +86,10 @@ class Territory extends Model {
             area: this.getArea(),
             painted_area: await this.getPaintedArea()
         }
+        if(withpainted) {
+            json.painted_squares = await this.getPaintedSquares()
+        }
+        return json
     }
 
     getArea() {
@@ -99,7 +103,12 @@ class Territory extends Model {
 
     async getPaintedSquares() {
         let paintedSquares = await Square.query().where('territory_id', this.id).andWhere('painted', 1).fetch()
-        return paintedSquares.rows
+        return paintedSquares.rows.map(square => {
+            return {
+                x: square.x,
+                y: square.y
+            }
+        })
     }
 }
 
