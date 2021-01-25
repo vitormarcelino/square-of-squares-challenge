@@ -1,6 +1,7 @@
 'use strict'
 
 const Territory = use("App/Models/Territory");
+const Error = use("App/Models/Error");
 
 class DashboardController {
     async showDashboard({ view }) {
@@ -18,9 +19,14 @@ class DashboardController {
         })
         mostProportionalPaintedArea.sort((a, b) => (a.proportionalPaintedArea < b.proportionalPaintedArea) ? 1 : -1)
 
+        let lastFivePaitedSquares = false
+
+        let lastFiveErrors = await Error.query().orderBy('created_at', 'desc').limit(5).fetch()
+
         return view.render('dashboard', {
             mostPaitedArea,
-            mostProportionalPaintedArea
+            mostProportionalPaintedArea,
+            lastFiveErrors
         })
     }
 }

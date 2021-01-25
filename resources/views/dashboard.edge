@@ -17,4 +17,10 @@
 
 <h2>Las 5 Painted Squares</h2>
 
+
 <h2>Las 5 Errors</h2>
+<ul>
+@each(error in lastFiveErrors.rows)
+    <li>{{ error.message }} | At: {{ error.created_at }}</li>
+@endeach
+</ul>
