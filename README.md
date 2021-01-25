@@ -9,6 +9,7 @@
 
 ## Running
 ```
+cp docker.env .env
 docker-compose up -d
 ```
 
@@ -67,3 +68,9 @@ Features in dashboard:
 - Most Proportional Painted Area
 - Last 5 Painted Squares
 - Last 5 Errors
+
+## Scaling 
+To scaling our project, we need to run docker command with a --scale parameter, like a example:
+```
+docker-compose up --scale app=3 -d
+```

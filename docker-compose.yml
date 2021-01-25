@@ -3,18 +3,13 @@ services:
   nginx:
     build: ./build/nginx
     restart: always
-    container_name: square-of-squares-nginx
     ports:
       - "80:80"
   app:
     build: .
     restart: always
-    container_name: square-of-squares-app
-    ports:
-      - "8888:8888"
   mysql:
     image: mysql:5.7
-    container_name: square-of-squares-mysql
     restart: always
     environment:
       MYSQL_DATABASE: "square-of-squares"
