@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "adonis serve --dev",
-    "start": "node server.js",
+    "start": "adonis migration:run && node server.js",
     "test": "node ace test"
   },
   "keywords": [
