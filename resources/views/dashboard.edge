@@ -15,10 +15,14 @@
 @endeach
 </ul>
 
-<h2>Las 5 Painted Squares</h2>
+<h2>Last 5 Painted Squares</h2>
+<ul>
+@each(square in lastFivePaitedSquares.rows)
+    <li>x: {{ square.x }} y: {{ square.y }} | Painted At: {{ square.painted_at }}</li>
+@endeach
+</ul>
 
-
-<h2>Las 5 Errors</h2>
+<h2>Last 5 Errors</h2>
 <ul>
 @each(error in lastFiveErrors.rows)
     <li>{{ error.message }} | At: {{ error.created_at }}</li>

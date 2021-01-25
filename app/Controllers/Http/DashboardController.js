@@ -1,7 +1,8 @@
 'use strict'
 
-const Territory = use("App/Models/Territory");
-const Error = use("App/Models/Error");
+const Territory = use("App/Models/Territory")
+const Error = use("App/Models/Error")
+const Square = use("App/Models/Square")
 
 class DashboardController {
     async showDashboard({ view }) {
@@ -19,13 +20,14 @@ class DashboardController {
         })
         mostProportionalPaintedArea.sort((a, b) => (a.proportionalPaintedArea < b.proportionalPaintedArea) ? 1 : -1)
 
-        let lastFivePaitedSquares = false
+        let lastFivePaitedSquares = await Square.query().where('painted', 1).orderBy('painted_at', 'desc').fetch()
 
         let lastFiveErrors = await Error.query().orderBy('created_at', 'desc').limit(5).fetch()
 
         return view.render('dashboard', {
             mostPaitedArea,
             mostProportionalPaintedArea,
+            lastFivePaitedSquares,
             lastFiveErrors
         })
     }

@@ -11,6 +11,7 @@ class SquareSchema extends Schema {
       table.integer('y')
       table.boolean('painted')
       table.integer('territory_id')
+      table.datetime('painted_at').nullable()
     })
   }
 
