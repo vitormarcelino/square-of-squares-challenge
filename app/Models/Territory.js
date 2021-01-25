@@ -9,7 +9,7 @@ class Territory extends Model {
 
     static async getAll() {
         let all = await Territory.all()
-        let territories = await all.rows.map(territory => territory.getJSON())
+        let territories = await Promise.all(all.rows.map(async territory => await territory.getJSON()))
         return {
             count: territories.length,
             data: territories
