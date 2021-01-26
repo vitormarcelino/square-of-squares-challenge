@@ -1,5 +1,7 @@
 'use strict'
 
+const { createConnection } = require("mysql")
+
 const Territory = use("App/Models/Territory")
 const Error = use("App/Models/Error")
 const Square = use("App/Models/Square")
@@ -20,15 +22,18 @@ class DashboardController {
         })
         mostProportionalPaintedArea.sort((a, b) => (a.proportionalPaintedArea < b.proportionalPaintedArea) ? 1 : -1)
 
-        let lastFivePaitedSquares = await Square.query().where('painted', 1).orderBy('painted_at', 'desc').fetch()
-
+        let lastFivePaitedSquares = await Square.query().where('painted', 1).orderBy('painted_at', 'desc').limit(5).fetch()
         let lastFiveErrors = await Error.query().orderBy('created_at', 'desc').limit(5).fetch()
+        let totalPaintedArea = await Square.query().where('painted', 1).getCount()
+        let totalArea = allTerritories.data.reduce((a, {area}) => a + area, 0)
 
         return view.render('dashboard', {
             mostPaitedArea,
             mostProportionalPaintedArea,
             lastFivePaitedSquares,
-            lastFiveErrors
+            lastFiveErrors,
+            totalPaintedArea,
+            totalArea
         })
     }
 }

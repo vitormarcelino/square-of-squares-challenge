@@ -68,6 +68,9 @@ Features in dashboard:
 - Most Proportional Painted Area
 - Last 5 Painted Squares
 - Last 5 Errors
+- Total Area
+- Total Painted Area
+- Percentage Painted Area:
 
 ## Scaling 
 To scaling our project, we need to run docker command with a --scale parameter, like a example:

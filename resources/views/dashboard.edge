@@ -3,6 +3,15 @@
 @section('content')
 <h1>Dashboard - Square of Squares</h1>
 
+<hr>
+<div class="row">
+    @!component('card', title = "Total Area", value = totalArea)
+    @!component('card', title = "Total Painted Area", value = totalPaintedArea)
+    @!component('card', title = "Percentage Painted Area", value = ((totalPaintedArea/totalArea)*100), unit = "%")
+</div>
+
+<hr>
+
 <div class="row">
     <h2>Most Painted Area</h2>
     <table class="table table-striped">
