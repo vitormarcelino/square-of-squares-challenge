@@ -1,7 +1,7 @@
 # Square of Squares - Challenge
 **Version:** `2.0`
 
-**Challenge description:** https://github.com/vitta-hiring/case-back-end/tree/master/challenges/2-SquareOfSquares
+[**Challenge description**](https://github.com/vitta-hiring/case-back-end/tree/master/challenges/2-SquareOfSquares)
 
 **Author:** Vitor Marcelino
 
@@ -12,6 +12,9 @@
 cp docker.env .env
 docker-compose up -d
 ```
+
+## Live Demo
+You can try a live demo [here](http://square-of-squares.vitormarcelino.com.br/dashboard)
 
 ## Requests
 The insomnia-workspace.json file can be imported with all the requisitions for the api. Alternatively we have the requests in CURL:
